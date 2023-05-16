@@ -1,10 +1,11 @@
 import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
+import cors from 'cors';
 
 dotenv.config();
 
-// const { DATABASE_URL, PORT } = process.env;
+// const { DATABASE_URL, PORT } = .env;
 
 const app = express();
 
@@ -20,8 +21,9 @@ const db = new pg.Pool({
     port: "5432"
 });
 
-app.use(express.static("public"));
+app.use(express.static("./public"));
 app.use(express.json());
+app.use(cors());
 
 app.get("/api/todo", (_, res) => {
     db.query("SELECT * FROM todo").then((data) => {
@@ -30,8 +32,7 @@ app.get("/api/todo", (_, res) => {
 });
 
 app.delete("/api/todo/:id", (req, res) => {
-    const id = req.params;
-    console.log("first");
+    const id = req.params.id;
 
     if (Number.isNaN(Number(id))) {
         res.sendStatus(422);
@@ -54,7 +55,7 @@ app.delete("/api/todo/:id", (req, res) => {
             console.error("Error executing DELETE query:", error);
             res.sendStatus(500); // Internal Server Error
         });
-}, console.log('third'));
+});
 
 
 app.patch("/api/todo/:id", (req, res) => {
