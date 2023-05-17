@@ -3,7 +3,7 @@ const todocontainer = document.querySelector(".todos");
 fetch("/api/todo")
     .then((res) => res.json())
     .then((data) => {
-        data.forEach(item => {
+        const j = data.forEach(item => {
             const newItem = document.createElement("span");
             newItem.textContent = item.text;
             todocontainer.appendChild(newItem);
@@ -35,30 +35,29 @@ CompleteButton.addEventListener("click", function () {
     document.body.append(no);
 
 
-    const id = req.params;
-    console.log(req.params);
+    // const id = req.params;
+    // console.log(req.params);
 
     yesButton.addEventListener("click", function () {
-        fetch("/api/todo/1", {
+        fetch("/api/todo/7", {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
             },
-        })
-            (response => {
-                if (response.ok) {
+        }).then(response => {
+            if (response.ok) {
 
-                    // Data deletion was successful
-                    // You can update the UI or perform any additional actions here
-                    // Clear the container on the UI
-                    todocontainer.remove;
-                    remove();
-                } else {
-                    return;
-                    // Request failed
-                    // Handle the error or show an error message
-                }
-            })
+                // Data deletion was successful
+                // You can update the UI or perform any additional actions here
+                // Clear the container on the UI
+                todocontainer.remove;
+                remove();
+            } else {
+                return;
+                // Request failed
+                // Handle the error or show an error message
+            }
+        })
             .catch(error => {
                 console.log('Error');
                 // An error occurred during the request
@@ -75,47 +74,51 @@ subs.addEventListener("submit", (event) => {
     event.preventDefault();
     const data = new FormData(event.target);
 
-    fetch("/api/todos", {
+    fetch("/api/todo", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ text: data.get("text") }),
+        body: JSON.stringify({ 'text': data.get("text") }),
     })
         .then((res) => res.json())
-        .then((todo) => {
-            todocontainer.append(createTodoElement(todo));
-            subs.querySelector('input').value = "";
-            subs.querySelector("input").focus();
+        .then((data) => {
+            (data => {
+                const newItem = document.createElement("span");
+                newItem.textContent = data.text;
+                todocontainer.appendChild(newItem);
+
+                const lineBreak = document.createElement("br");
+                todocontainer.appendChild(lineBreak);
+            });
         });
-});
 
-const createTodoElement = (todo) => {
-    const todoForm = document.createElement("form");
-    todoForm.className = "todo-form";
-    const textInput = document.createElement("input");
-    textInput.name = "text";
-    textInput.value = todo.text;
-    todoForm.append(textInput);
+    const createTodoElement = (todo) => {
+        const todoForm = document.createElement("form");
+        todoForm.className = "todo-form";
+        const textInput = document.createElement("input");
+        textInput.name = "text";
+        textInput.value = todo.text;
+        todoForm.append(textInput);
 
-    todoForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        // const data;
-        const data = new FormData(event.target);
+        todoForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            // const data;
+            const data = new FormData(event.target);
 
-        fetch(`/api/todos/${todo.id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ text: data.get("text") }),
+            fetch(`/api/todos/${todo.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ text: data.get("text") }),
+            })
+
         })
+    }
 
-    })
-}
-
-//
+    //
 
 
-
+})
 
