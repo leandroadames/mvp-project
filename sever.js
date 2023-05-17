@@ -39,7 +39,7 @@ app.delete("/api/todo/:id", (req, res) => {
         return;
     }
 
-    const query = "DELETE * FROM todo";
+    const query = "DELETE FROM todo WHERE id = $1 RETURNING *";
     const values = [id];
 
     db.query(query, values)

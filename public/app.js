@@ -1,6 +1,6 @@
 const todocontainer = document.querySelector(".todos");
 
-fetch("http://localhost:3000/api/todo")
+fetch("/api/todo")
     .then((res) => res.json())
     .then((data) => {
         data.forEach(item => {
@@ -34,12 +34,16 @@ CompleteButton.addEventListener("click", function () {
     no.append(noButton);
     document.body.append(no);
 
+
+    const id = req.params;
+    console.log(req.params);
+
     yesButton.addEventListener("click", function () {
-        fetch("http://localhost:3000/api/todo/$1", {
+        fetch("/api/todo/1", {
             method: 'DELETE',
-            // headers: {
-            //     'Content-Type': 'application/json',
-            // },
+            headers: {
+                'Content-Type': 'application/json',
+            },
         })
             (response => {
                 if (response.ok) {
@@ -60,6 +64,7 @@ CompleteButton.addEventListener("click", function () {
                 // An error occurred during the request
                 // Handle the error or show an error message
             });
+
     });
 });
 
