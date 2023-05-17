@@ -1,4 +1,137 @@
 body {
-    justify-content: center;
+    overflow-y: scroll;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('https://minnetonkaorchards.com/wp-content/uploads/2021/06/Japanese-Cherry-Blossoms.jpg.webp');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
 
+#header {
+    display: flex;
+    justify-content: space-around;
+}
+
+#logo {
+    width: 100%;
+}
+
+#logo:hover {
+    cursor: pointer;
+}
+
+#userLogDiv {
+    width: 200px;
+    height: 80px;
+}
+
+#loginButton:hover {
+    cursor: pointer;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    box-sizing: border-box;
+    width: 80%;
+    height: 100%;
+    background-color: rgba(192, 192, 192, 0.8)
+}
+
+.navContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: auto;
+    box-sizing: border-box;
+    height: 10%;
+}
+
+#displayAnime {
+    width: 10%;
+    border: 1px black;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#displayAnime:hover {
+    background-color: darkgray;
+    color: white;
+    cursor: pointer;
+}
+
+.bodyContainer {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: auto;
+    align-items: center;
+}
+
+.newAnime {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+
+.animeTitle {
+    text-align: center;
+    font-weight: bold;
+}
+
+.animeTitle:hover {
+    background-color: darkgray;
+    color: white;
+    cursor: pointer;
+}
+
+.spaceDiv {
+    height: 30px;
+}
+
+.newReviewDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 400px;
+}
+
+.reviewDiv {
+    text-align: center;
+    width: 400px;
+    overflow-wrap: break-word;
+}
+
+.reviewerDiv {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.deleteButton {
+    position: absolute;
+    margin-left: 500px;
+}
+
+#reviewForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#reviewError {
+    color: red;
+    font-weight: bold;
+}
+
+.deleteError {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
+#reviewSubmit:hover {
+    cursor: pointer;
 }
