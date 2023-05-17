@@ -25,13 +25,13 @@ app.use(express.static("./public"));
 app.use(express.json());
 app.use(cors());
 
-app.get("/api/todo", (_, res) => {
+app.get("http://localhost:3000/api/todo", (_, res) => {
     db.query("SELECT * FROM todo").then((data) => {
         res.json(data.rows);
     });
 });
 
-app.delete("/api/todo/:id", (req, res) => {
+app.delete("http://localhost:3000/api/todo/:id", (req, res) => {
     const id = req.params.id;
 
     if (Number.isNaN(Number(id))) {
@@ -58,7 +58,7 @@ app.delete("/api/todo/:id", (req, res) => {
 });
 
 
-app.patch("/api/todo/:id", (req, res) => {
+app.patch("http://localhost:3000/api/todo/:id", (req, res) => {
     const { id } = req.params;
     const { text } = req.body;
     db.query("UPDATE todo SET text = $1 WHERE id = $2 RETURNING *", [
@@ -69,7 +69,7 @@ app.patch("/api/todo/:id", (req, res) => {
     });
 });
 
-app.post("/api/todo", (req, res) => {
+app.post("http://localhost:3000/api/todo", (req, res) => {
     const { text } = req.body;
     db.query("INSERT INTO todo (text) VALUES ($1) RETURNING *", [
         text

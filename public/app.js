@@ -39,7 +39,7 @@ CompleteButton.addEventListener("click", function () {
     // console.log(req.params);
 
     yesButton.addEventListener("click", function () {
-        fetch("/api/todo/7", {
+        fetch("/api/todo/1", {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
